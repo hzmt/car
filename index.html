@@ -98,9 +98,18 @@
             }
             const firstDigit = parseInt(match[0], 10);
             const parity = (firstDigit % 2 === 0) ? 'even' : 'odd';
-            const parity1 = (firstDigit % 2 === 0) ? 'စုံ' : 'မ';
-            resultDiv.textContent = `ကား နံပါတ်က ${firstDigit} ဆိုတော့ ${parity1} – ဒီနေ့တွေ အပြင်ထွက်လို့ရတယ်.`;
             const today = new Date();
+            const dayOfMonth = today.getDate();
+            const todayParity = (dayOfMonth % 2 === 0) ? 'even' : 'odd';
+            
+            let message = `ဒီနေ့ က ${dayOfMonth} ရက်နေ့  `;
+            if (parity === todayParity) {
+                message += 'အပြင်ထွက်လို့ရတယ်နော်.';
+            } else {
+                message += "အပြင် မထွက်နဲ့ဦးဟ ";
+            }
+            resultDiv.textContent = message;
+            
             const table = generateCalendar(today.getFullYear(), today.getMonth(), parity);
             calendarDiv.appendChild(table);
         });
@@ -109,4 +118,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
-
